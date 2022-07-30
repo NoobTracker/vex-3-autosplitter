@@ -22,6 +22,11 @@ state("vex-3")
 	//instead of the transitionIn variable. 
 	//It's a variable of the main script. 
 	int level : 0x007E8A80, 0x10, 0x8, 0x24, 0x6C, 0x8, 0x0, 0x74;
+	
+	//This variable is a frame counter. It seems to start counting when
+	//the program is started. 
+	//I have no clue where this variable is defined ...
+	int frameCount : 0x00804070, 0x4, 0xC, 0xC, 0x114;
 }
 
 
@@ -32,6 +37,11 @@ startup
 	//we need this to reset when you exit the game.
 	vars.TimerModel = new TimerModel { CurrentState = timer };
 	
+	//This variable stores the state of the frame counter when the run
+	//is started.
+	vars.frameCountOnStart = 0;
+	
+	//Settings ...
 	settings.Add("traditionalSplits", false, "Traditional splits");
 	settings.SetToolTip("traditionalSplits", 
 		"Split whenever a finish portal is reached, instead of splitting whenever a transition starts or ends (+Vex portal).");
@@ -43,7 +53,12 @@ start
 {
 	//When you press "Play game", you start a transition, so we check
 	//for a rising edge of the transitionIn variable.
-	return (current.transitionIn == 1) && (old.transitionIn == 0);
+	if((current.transitionIn == 1) && (old.transitionIn == 0)){
+		//Remember the current frame count
+		vars.frameCountOnStart = current.frameCount;
+		return true;
+	}
+	return false;
 }
 
 split
@@ -71,6 +86,14 @@ split
 		
 	}
 	
+}
+
+gameTime
+{
+	int frames = current.frameCount - vars.frameCountOnStart;
+	int fps = 30;
+	int millis = (frames * 1000) / fps;
+	return TimeSpan.FromMilliseconds(millis);
 }
 
 
