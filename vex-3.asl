@@ -88,6 +88,11 @@ split
 	
 }
 
+
+
+//I was told that this is needed to make LiveSplit use the "IGT"
+isLoading{return true;}
+
 gameTime
 {
 	double frames = current.frameCount - vars.frameCountOnStart;
