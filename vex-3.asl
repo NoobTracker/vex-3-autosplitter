@@ -90,9 +90,9 @@ split
 
 gameTime
 {
-	int frames = current.frameCount - vars.frameCountOnStart;
-	int fps = 30;
-	int millis = (frames * 1000) / fps;
+	double frames = current.frameCount - vars.frameCountOnStart;
+	double fps = 30;
+	double millis = (frames * 1000) / fps;
 	return TimeSpan.FromMilliseconds(millis);
 }
 
