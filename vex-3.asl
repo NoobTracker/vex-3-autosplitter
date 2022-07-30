@@ -1,4 +1,4 @@
-//Autosplitter for the .exe flash version of Vex 3, (currently limited to) Any%
+//Autosplitter and IGT for the .exe flash version of Vex 3, (currently limited to) Any%
 
 state("vex-3")
 {
