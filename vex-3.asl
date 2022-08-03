@@ -45,7 +45,11 @@ startup
 	settings.Add("traditionalSplits", false, "Traditional splits");
 	settings.SetToolTip("traditionalSplits", 
 		"Split whenever a finish portal is reached, instead of splitting whenever a transition starts or ends (+Vex portal).");
+		
+	settings.Add("debug", false, "debug do not enable");
 }
+
+init{if(settings["debug"]){vars.TimerModel.Start();}}
 
 
 
