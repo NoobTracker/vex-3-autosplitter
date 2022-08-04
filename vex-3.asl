@@ -6,7 +6,7 @@ state("vex-3")
 	//returns 0 again as soon as the transition's diamonds are fading
 	//away. 
 	//It's a variable of the main script. 
-	int transitionIn : 0x007E8A80, 0x10, 0x8, 0x24, 0x6C, 0x8, 0x0, 0xCC;
+	int transitionIn : 0x00804070, 0x4, 0x4E0, 0x4, 0x2C, 0x238, 0x0, 0xCC;
 	
 	//This variable returns 1 while the player is being sucked into the
 	//finish portal. I'm not quite sure if the igt stops as soon as this
@@ -21,7 +21,7 @@ state("vex-3")
 	//Vexation, which has to be split using the finishedLevel variable
 	//instead of the transitionIn variable. 
 	//It's a variable of the main script. 
-	int level : 0x007E8A80, 0x10, 0x8, 0x24, 0x6C, 0x8, 0x0, 0x74;
+	int level : 0x00804070, 0x4, 0x4E0, 0x4, 0x2C, 0x238, 0x0, 0x74;
 	
 	//This variable is a frame counter. It seems to start counting when
 	//the program is started. 
